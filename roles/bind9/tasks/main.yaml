@@ -1,0 +1,23 @@
+---
+# bind9 role orchestrator
+
+- name: Uninstall bind9
+  ansible.builtin.include_tasks: uninstall.yaml
+  when: bind9_state == 'absent'
+  tags:
+    - bind9
+    - uninstall
+
+- name: Install bind9
+  ansible.builtin.include_tasks: install.yaml
+  when: bind9_state == 'present'
+  tags:
+    - bind9
+    - install
+
+- name: Configure bind9
+  ansible.builtin.include_tasks: configure.yaml
+  when: bind9_state == 'present'
+  tags:
+    - bind9
+    - configure

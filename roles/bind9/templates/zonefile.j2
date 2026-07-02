@@ -1,0 +1,11 @@
+$TTL {{ item.ttl | default('86400') }}
+@   IN SOA {{ item.soa.name }}. {{ item.soa.email }}. (
+          {{ item.soa.serial }} ; serial
+          {{ item.soa.refresh }} ; refresh
+          {{ item.soa.retry }}   ; retry
+          {{ item.soa.expire }}  ; expire
+          {{ item.soa.minimum }} ; minimum
+)
+{% for record in item.records %}
+{{ record.name }} {{ record.ttl | default('') }} {{ record.type }} {{ record.value }}
+{% endfor %}

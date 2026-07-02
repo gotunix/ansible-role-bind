@@ -1,0 +1,7 @@
+---
+# install bind9 package
+
+- name: Install bind9
+  ansible.builtin.package:
+    name: bind9
+    state: present

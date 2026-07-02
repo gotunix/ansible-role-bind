@@ -1,0 +1,10 @@
+---
+# default variables for bind9 role
+
+bind9_state: present                # present | absent
+bind9_listen_addresses:
+  - "127.0.0.1"
+bind9_forwarders: []                # list of IPs
+
+# zone definitions; see README for format
+bind9_zones: []

@@ -1,0 +1,23 @@
+---
+# uninstall bind9
+
+- name: Stop bind9 service
+  ansible.builtin.service:
+    name: bind9
+    state: stopped
+    enabled: false
+  register: bind9_result
+  ignore_errors: true
+  failed_when: bind9_result.failed | bool
+
+- name: Remove bind9 package
+  ansible.builtin.package:
+    name: bind9
+    state: absent
+
+- name: Remove managed zone directory
+  ansible.builtin.file:
+    path: /etc/bind/zones
+    state: absent
+    recurse: true
+    force: true

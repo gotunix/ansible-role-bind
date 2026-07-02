@@ -1,0 +1,14 @@
+// managed by Ansible bind9 role
+
+options {
+    directory "/var/cache/bind";
+    listen-on { {% for addr in bind9_listen_addresses %}{{ addr }}; {% endfor %} };
+    forwarders { {% for f in bind9_forwarders %}{{ f }}; {% endfor %} };
+};
+
+{% for zone in bind9_zones %}
+zone "{{ zone.name }}" {
+    type {{ zone.type }};
+    file "{{ zone.file }}";
+};
+{% endfor %}

@@ -1,0 +1,8 @@
+---
+# handlers for bind9 role
+
+- name: Restart bind9
+  ansible.builtin.service:
+    name: bind9
+    state: restarted
+    enabled: true
